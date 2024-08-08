@@ -1,6 +1,15 @@
 function createElement(type, props, ...children) {
+  if (typeof type == "function") {
+    let instance = new type(props);
+    let render = instance.render();
+    let flatChildren = render.children.flat();
+    return {
+      type: render.type,
+      props: { ...props, ...render.props },
+      children: flatChildren,
+    };
+  }
   let flatChildren = children.flat();
-
   return {
     type: type,
     props: props || {},
@@ -13,12 +22,13 @@ class Component {
     this.props = props;
     this.state = this.state || {};
   }
-  update() {
-    this.render();
-  }
+
   setState(newState) {
     this.state = { ...this.state, ...newState };
+
+    console.log(this.render());
   }
+
   render() {}
 }
 

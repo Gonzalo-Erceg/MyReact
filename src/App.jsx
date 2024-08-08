@@ -1,5 +1,19 @@
 import MyReact from "./React/MyReact";
 
+class Button extends MyReact.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <button className="button" onClick={() => console.log("hola")}>
+        Hola Mundo desde mi react
+      </button>
+    );
+  }
+}
+
 class App extends MyReact.Component {
   constructor(props) {
     super(props);
@@ -7,9 +21,9 @@ class App extends MyReact.Component {
 
   render() {
     return (
-      <button className="boton" onClick={() => console.log("hola")}>
-        Hola Mundo desde mi reactaaaaaaa
-      </button>
+      <main className="main">
+        <Button />
+      </main>
     );
   }
 }
